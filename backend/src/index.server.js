@@ -6,7 +6,9 @@ const mongoose = require("mongoose"); //use mongodb
 
 // importing routes
 
-const userRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
+const adminRoutes = require("./routes/admin/auth");
+
 
 //environment variables
 env.config();
@@ -39,7 +41,8 @@ app.post("/data", (req, res, next) => {
 //middleware
 
 app.use(bodyParser()); //pass the data
-app.use("/api", userRoutes); //call API from the user routes
+app.use("/api", authRoutes); //call API from the user routes
+app.use("/api", adminRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running in port ${process.env.PORT}`);

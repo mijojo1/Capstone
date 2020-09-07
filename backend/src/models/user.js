@@ -51,8 +51,11 @@ const userSchema = new mongoose.Schema({ //define fills to use in the API
 userSchema.virtual('password').set(function(password){
     this.hash_password = bcrypt.hashSync(password, 10);//gen hash password (callinmg our password and the salt)
 });
+userSchema.virtual('fullName').get(function(){
+    return `${this.firstName} ${this.lastName}`;
+})
 userSchema.methods = {
-    autheticate: function(password){
+    authenticate: function(password){
         return bcrypt.compareSync(password, this.hash_password)
     }
 }
