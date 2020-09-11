@@ -1,14 +1,13 @@
 const express = require("express");
 const app = express();
 const env = require("dotenv");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose"); //use mongodb
 
 // importing routes
 
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
-
+const categoryRoutes = require('./routes/category');
 
 //environment variables
 env.config();
@@ -40,9 +39,10 @@ app.post("/data", (req, res, next) => {
 
 //middleware
 
-app.use(bodyParser()); //pass the data
+app.use(express.json()); //pass the data
 app.use("/api", authRoutes); //call API from the user routes
 app.use("/api", adminRoutes);
+app.use('/api', categoryRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running in port ${process.env.PORT}`);

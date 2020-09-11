@@ -1,10 +1,10 @@
 const express = require("express");
-const { signup, signin, requireSignin } = require("../../controllers/admin/auth");
+const { signup, signin } = require("../../controllers/admin/auth");
 const { json } = require("body-parser");
 const {  isRequestValidated, validateSignupRequest, validateSigninRequest } = require("../../validatios/auth");
 const router = express.Router();
 
-router.post("/admin/signup", validateSignupRequest , isRequestValidated,signup);
+router.post("/admin/signup", validateSignupRequest , isRequestValidated,signup); //validate login
 
 router.post("/admin/signin", validateSigninRequest , isRequestValidated, signin);
 

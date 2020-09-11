@@ -30,7 +30,7 @@ exports.signup = (req, res) => {
       }
     });
   });
-};
+}
 
 exports.signin = (req, res) => {
   User.findOne({ email: req.body.email }).exec((error, user) => {
@@ -70,13 +70,5 @@ exports.signin = (req, res) => {
       });
     }
   });
-};
-//verify tokens
-exports.requireSignin = (req,res,next)=>{
-  const token = req.headers.authorization.split(" ")[1];
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  //attach the user on the request
-  req.user = user;
-  next();
-  //jwt.decode()
 }
+//verify tokens

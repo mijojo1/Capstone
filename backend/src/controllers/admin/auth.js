@@ -43,7 +43,7 @@ exports.signin = (req, res) => {
     if (user) {
       if (user.authenticate(req.body.password) && user.role === 'admin') {
         //if the user pass is True create a token by is session, CREATIN THE TOKEN
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id, role:user.role  }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
         const {_id, firstName, lastName, email, role, fullName } = user;
@@ -70,13 +70,4 @@ exports.signin = (req, res) => {
       });
     }
   });
-};
-//verify tokens
-exports.requireSignin = (req,res,next)=>{
-  const token = req.headers.authorization.split(" ")[1];
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  //attach the user on the request
-  req.user = user;
-  next();
-  //jwt.decode()
 }
