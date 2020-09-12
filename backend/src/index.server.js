@@ -8,6 +8,7 @@ const mongoose = require("mongoose"); //use mongodb
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
 const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 
 //environment variables
 env.config();
@@ -43,6 +44,7 @@ app.use(express.json()); //pass the data
 app.use("/api", authRoutes); //call API from the user routes
 app.use("/api", adminRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running in port ${process.env.PORT}`);
