@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const env = require("dotenv");
 const mongoose = require("mongoose"); //use mongodb
-
+const path = require('path');
 // importing routes
 
 const authRoutes = require("./routes/auth");
@@ -40,7 +40,7 @@ app.post("/data", (req, res, next) => {
 });
 
 //middleware
-
+app.use('/public',express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); //pass the data
 app.use("/api", authRoutes); //call API from the user routes
 app.use("/api", adminRoutes);

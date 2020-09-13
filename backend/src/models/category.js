@@ -1,20 +1,20 @@
-//the structure of the json for categories
 const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     slug: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
+    categoryImage: { type: String },
     parentId: {
-      type: String
-    }
+      type: String,
+    },
   },
   { timestamps: true }
 );
