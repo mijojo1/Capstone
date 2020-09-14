@@ -3,7 +3,9 @@ import Layout from "../../components/layout";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 
+
 const Signup = (props) => {
+  
   return (
     <Layout>
       <Container>
