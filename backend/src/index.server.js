@@ -3,6 +3,7 @@ const app = express();
 const env = require("dotenv");
 const mongoose = require("mongoose"); //use mongodb
 const path = require('path');
+const cors = require('cors');
 // importing routes
 
 const authRoutes = require("./routes/auth");
@@ -40,6 +41,7 @@ app.post("/data", (req, res, next) => {
 });
 
 //middleware
+app.use(cors());
 app.use('/public',express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); //pass the data
 app.use("/api", authRoutes); //call API from the user routes
