@@ -28,8 +28,14 @@ export default (state = initState, action) => {
         user: action.payload.user,
         token: action.payload.token,
         authenticate: true,
-        authenticating:false,
+        authenticating: false,
       };
+      break;
+    case authConstants.LOGOUT_REQUEST:
+      state = {
+        ...initState,
+      };
+      break;
     
   }
   return state;

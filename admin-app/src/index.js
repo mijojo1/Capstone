@@ -6,7 +6,10 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router } from "react-router-dom";
+let result = [1,2,3].map(v => v + 1).reduce((prev, curr) => prev + curr);
 
+
+console.log(result);
 window.store = store;
 
 ReactDOM.render(

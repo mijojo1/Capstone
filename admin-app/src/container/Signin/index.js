@@ -22,7 +22,7 @@ const Signin = (props) => {
     dispatch(login(user));
   };
   if (auth.authenticate) {
-    return <Redirect to={"/"} />;
+    return <Redirect to={`/`} />;
   }
 
   return (
