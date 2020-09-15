@@ -7,20 +7,25 @@ import Signup from "./container/Signup";
 import PrivateRoute from "./components/HOC/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { IsUserLoggedIn } from "./actions";
+import Product from "./container/Products";
+import Orders from "./container/Orders";
+import Category from "./container/Category";
 
 function App() {
-  
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(IsUserLoggedIn());
     }
-  }, []);
+  });
   return (
     <div className="App">
       <Switch>
         <PrivateRoute path="/" exact component={Home} />
+        <PrivateRoute path="/product" component={Product} />
+        <PrivateRoute path="/orders" component={Orders} />
+        <PrivateRoute path="/category" component={Category} />
         <Route path="/Signup" component={Signup} />
         <Route path="/Signin" component={Signin} />
       </Switch>
