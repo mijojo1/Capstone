@@ -2,16 +2,16 @@ const express = require("express");
 const app = express();
 const env = require("dotenv");
 const mongoose = require("mongoose"); //use mongodb
-const path = require('path');
-const cors = require('cors');
+const path = require("path");
+const cors = require("cors");
 // importing routes
 
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin/auth");
-const categoryRoutes = require('./routes/category');
-const productRoutes = require('./routes/product');
-const cartRoutes = require('./routes/cart');
-
+const categoryRoutes = require("./routes/category");
+const productRoutes = require("./routes/product");
+const cartRoutes = require("./routes/cart");
+const initialDataRoutes = require("./routes/admin/initialData");
 //environment variables
 env.config();
 
@@ -23,7 +23,7 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
     }
   )
   .then(() => {
@@ -42,13 +42,14 @@ app.post("/data", (req, res, next) => {
 
 //middleware
 app.use(cors());
-app.use('/public',express.static(path.join(__dirname, 'uploads')));
+app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use(express.json()); //pass the data
 app.use("/api", authRoutes); //call API from the user routes
 app.use("/api", adminRoutes);
-app.use('/api', categoryRoutes);
-app.use('/api', productRoutes);
-app.use('/api', cartRoutes);
+app.use("/api", categoryRoutes);
+app.use("/api", productRoutes);
+app.use("/api", cartRoutes);
+app.use("/api", initialDataRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running in port ${process.env.PORT}`);

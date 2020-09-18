@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../header";
 import { Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import "./style.css";
 
 
 const Layout = (props) => {
@@ -14,7 +15,7 @@ const Layout = (props) => {
             <Col md={2} className="sidebar">
               <ul>
                 <li>
-                  <NavLink to={"/"}>Home</NavLink>{" "}
+                  <NavLink exact to={"/"}>Home</NavLink>{" "}
                 </li>
                 <li>
                   <NavLink to={"/product"}>Product</NavLink>{" "}
@@ -27,7 +28,7 @@ const Layout = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col md={10} style={{ marginLeft: "auto" }}>
+            <Col md={10} style={{ marginLeft: "auto", paddingTop:'60px'}}>
               {props.children}
             </Col>
           </Row>
